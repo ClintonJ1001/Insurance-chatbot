@@ -27,6 +27,8 @@ It is laid out in these sections:
     - Creates multiple responses to the questions which are then evaluated within another conversation
     - surfaces up the final answer
  
+I import an API key from apikey.py you can create this yourself or just put the key directly into files.
+ 
 ## Limitations
 
 This is still very much a work in progress. Its not great at surfacing information from the contract. I think this is mainly due to the poor quality of the contract PDF conversion. I am going to try cleaning this document up a bit as I'm sure that will dramatically improve it.
