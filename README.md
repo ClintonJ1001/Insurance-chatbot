@@ -1,35 +1,36 @@
-# Powering your products with ChatGPT and your own data
+# Example of using ChatGPT to power an insurance chatbot
 
-The Chatbot Kickstarter is a starter repo to get you used to building a basic Chatbot using the ChatGPT API and your own knowledge base. The flow you're taken through was originally presented with [these slides](https://drive.google.com/file/d/1dB-RQhZC_Q1iAsHkNNdkqtxxXqYODFYy/view?usp=share_link), which may come in useful to refer to. 
+The starting point for this work is the openai cookbok chatbot kick-starter
 
-This repo contains one notebook and two basic Streamlit apps:
-- `powering_your_products_with_chatgpt_and_your_data.ipynb`: A notebook containing a step by step process of tokenising, chunking and embedding your data in a vector database, and building simple Q&A and Chatbot functionality on top.
-- `search.py`: A Streamlit app providing simple Q&A via a search bar to query your knowledge base.
-- `chat.py`: A Streamlit app providing a simple Chatbot via a search bar to query your knowledge base.
+This repo contains one notebook and a basic Streamlit apps:
+- `Insurance Chatbot.ipynb`: A notebook containing a step by step process of tokenising, chunking and embedding the data in a vector database. 
+- `chat.py`: A Streamlit app providing a simple Chatbot via a search bar to query the knowledge base.
 
-To run either version of the app, please follow the instructions in the respective README.md files in the subdirectories.
+My goal was to experiment with having multiple data stores. While its not necessary in this example I can see situations where this woudl be useful in a real business context.
+
+Also given the stochastic nature of the model, I wanted to try generating mutiple responses at various steps and then using a new interaction with the model to evaluate and determine the best answers. 
+
+Given the approach I experiemented with using a higher temperature for the initial response generations to get a braoder range of possiblilities. These were then filtered and consolidated by a lower temperature interaction to evaluate and combine them.
 
 ## How it works
 
-The notebook is the best place to start, and is broadly laid out as follows:
+You must start with the notebook as it loads the data into the vector database which is the knowledge base for the chat app
+It is laid out in these sections:
+- **Setup:** 
+    - Initiate variables and source the data
 - **Lay the foundations:**
     - Set up the vector database to accept vectors and data
     - Load the dataset, chunk the data up for embedding and store in the vector database
-- **Make it a product:**
-    - Add a retrieval step where users provide queries and we return the most relevant entries
-    - Summarise search results with GPT-3
-    - Test out this basic Q&A app in Streamlit
-- **Build your moat:**
-    - Create an Assistant class to manage context and interact with our bot
-    - Use the Chatbot to answer questions using semantic search context
-    - Test out this basic Chatbot app in Streamlit
 
-Once you've run the notebook and tried the two Streamlit apps, you should be in a position to strip out any useful snippets and start your own Q&A or Chat application.
-
+- **The chat application:**
+    - The update from the original involves using ChatGPT to come up with improved search terms for the database
+    - Creates multiple responses to the questions which are then evaluated within another conversation
+    - surfaces up the final answer
+ 
 ## Limitations
 
-- This app uses Redis as a vector database, but there are many other options highlighted `../examples/vector_databases` depending on your need.
-- This is a simple starting point - if you hit issues deploying your use case you may need to tune (non-exhaustive list):
-    - The prompt and parameters for the model for it to answer accurately
-    - Your search to return more relevant results
-    - Your chunking/embedding approach to store the most relevant content effectively for retrieval
+This is still very much a work in progress. Its not great at surfacing information from the contract. I think this is mainly due to the poor quality of the contract PDF conversion. I am going to try cleaning this document up a bit as I'm sure that will dramatically improve it.
+
+Its quite slow. No doubt this largely due to the mutiple calls on the model. While its too slow for a practical application as is, the quality of the responses is dramatically improved by this process. If you uncomment out code that writes every interaction to the user you can see how the model goes on a tangent sometimes but the evaluation / consolidation steps really takes care of this behaviour.
+
+This approach could be extended to evaluate the interaction against applicable laws or regulations, other internal documents or style guides.
