@@ -1,16 +1,16 @@
 # Example of using ChatGPT to power an insurance chatbot
 
-The starting point for this work is the openai cookbok chatbot kick-starter
+To deploy chatbots in financial services it is critical that they accurately respond to customer queries. My objective was to build a prototype that would achieve this aim, with the scope limited to a specific home insurance product from an Australian insurer and a mock insurance contract.
+
+Given the stochastic nature of the model, I wanted to try generating mutiple responses at various steps and then using a new interaction with the model to evaluate and determine the best answers. I experiemented with using a higher temperature for the initial response generations to get a braoder range of possiblilities. These were then filtered and consolidated by a lower temperature interaction to evaluate and combine them.
+
+My goal was also to experiment with having multiple data stores. While its not necessary in this example I can see situations where this woudl be useful in a real business context.
+
+The starting point for this work is the openai cookbok chatbot kick-starter.
 
 This repo contains one notebook and a basic Streamlit apps:
 - `Insurance Chatbot.ipynb`: A notebook containing a step by step process of tokenising, chunking and embedding the data in a vector database. 
 - `chat.py`: A Streamlit app providing a simple Chatbot via a search bar to query the knowledge base.
-
-My goal was to experiment with having multiple data stores. While its not necessary in this example I can see situations where this woudl be useful in a real business context.
-
-Also given the stochastic nature of the model, I wanted to try generating mutiple responses at various steps and then using a new interaction with the model to evaluate and determine the best answers. 
-
-Given the approach I experiemented with using a higher temperature for the initial response generations to get a braoder range of possiblilities. These were then filtered and consolidated by a lower temperature interaction to evaluate and combine them.
 
 ## How it works
 
