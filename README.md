@@ -2,9 +2,9 @@
 
 To deploy chatbots in financial services it is critical that they accurately respond to customer queries. My objective was to build a prototype that would achieve this aim, with the scope limited to a specific home insurance product from an Australian insurer and a mock insurance contract.
 
-Given the stochastic nature of the model, I wanted to try generating mutiple responses at various steps and then using a new interaction with the model to evaluate and determine the best answers. I experiemented with using a higher temperature for the initial response generations to get a braoder range of possiblilities. These were then filtered and consolidated by a lower temperature interaction to evaluate and combine them.
+Given the stochastic nature of the model, I wanted to try generating mutiple responses at various steps and then using a new interaction with the model to evaluate and determine the best answers. I experiemented with using a higher temperature for the initial response generations to get a broader range of possiblilities. These were then filtered and consolidated by a lower temperature interaction to evaluate and combine them.
 
-My goal was also to experiment with having multiple data stores. While its not necessary in this example I can see situations where this woudl be useful in a real business context.
+My goal was also to experiment with having multiple data stores. While its not necessary in this example I can see situations where this would be useful in a real business context.
 
 The starting point for this work is the openai cookbok chatbot kick-starter.
 
